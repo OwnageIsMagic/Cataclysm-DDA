@@ -106,7 +106,7 @@
 #include "cata_tiles.h"
 #endif // TILES
 
-#if !(defined _WIN32 || defined WINDOWS || defined TILES)
+#if !(defined _WIN32 || defined WINDOWS || defined TILES || defined ANDROID)
 #include <langinfo.h>
 #endif
 
@@ -14317,7 +14317,7 @@ void intro()
     }
     werase(tmp);
 
-#if !(defined _WIN32 || defined WINDOWS || defined TILES)
+#if !(defined _WIN32 || defined WINDOWS || defined TILES || defined ANDROID)
     // Check whether LC_CTYPE supports the UTF-8 encoding
     // and show a warning if it doesn't
     if (std::strcmp(nl_langinfo(CODESET), "UTF-8") != 0) {
