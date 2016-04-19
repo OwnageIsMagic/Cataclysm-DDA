@@ -7,7 +7,7 @@ make version
 cp com.cataclysmdda.andr-1-TEMPLATE.apk com.cataclysmdda.andr.apk
 
 #	Move to APK
-rm -r assets
+#rm -r assets
 mkdir assets
 zip -qor9 assets/resources.zip data/
 mv ../libs/armeabi-v7a/cataclysm assets/executable
