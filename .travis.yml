@@ -1,11 +1,22 @@
 language: cpp
-compiler:
-  - gcc
+compiler: gcc
 
-script: make
+git:
+  depth: 3
+
+addons:
+ apt:
+   packages:
+   - openjdk-7-jdk
+    
+before_install:
+- cd ..
+- mv Cataclysm-DDA jni
+- cd jni
+- git clone --depth 1 https://github.com/urho3d/android-ndk.git android-ndk-root
+- export ANDROID_NDK_HOME=$(pwd)/android-ndk-root
+
+script: ./buildAPK.sh
 
 notifications:
-  irc: "irc.newnet.net#Cataclysm-DDA"
-  irc: "irc.freenode.org#Cataclysm-DDA"
-  use_notice: true
-  skip_join: true
+  email: false
