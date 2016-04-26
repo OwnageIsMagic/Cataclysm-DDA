@@ -3,7 +3,7 @@ set -ev
 
 #	Build
 make version 
-./android-ndk-root/ndk-build -j8
+./android-ndk-root/ndk-build -j4
 cp com.cataclysmdda.andr-1-TEMPLATE.apk com.cataclysmdda.andr.apk
 
 #	Move to APK
