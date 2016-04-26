@@ -2,6 +2,7 @@
 set -ev
 
 #	Build
+openssl aes-256-cbc -K $encrypted_bef49239437d_key -iv $encrypted_bef49239437d_iv -in my-release-key.keystore.enc -out my-release-key.keystore -d
 make version 
 ./android-ndk-root/ndk-build -j4
 cp com.cataclysmdda.andr-1-TEMPLATE.apk com.cataclysmdda.andr.apk
