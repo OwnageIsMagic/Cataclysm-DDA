@@ -1,22 +1,30 @@
 language: cpp
 compiler: gcc
-
 git:
   depth: 3
-
 addons:
- apt:
-   packages:
-   - openjdk-7-jdk
-    
+  apt:
+    packages:
+    - openjdk-7-jdk
 before_install:
 - cd ..
 - mv Cataclysm-DDA jni
 - cd jni
 - git clone --depth 1 https://github.com/urho3d/android-ndk.git android-ndk-root
 - export ANDROID_NDK_HOME=$(pwd)/android-ndk-root
-
 script: ./buildAPK.sh
-
 notifications:
-  email: false
+  email: true
+deploy:
+  provider: releases
+  api_key:
+    secure: hsD46uOFrKYAD0lMujnFTxiPLGk5DrpAaV8sUSQXWSGk/Qy2Osu0G3sOCtI1Y6Ie2mE3vzYgF3gMEw/v8o6VTrhw4SUm6FPnjGmORKJow0HX0toQwSrR7oKji/S9B22xb3Fl4IBbJHN4xss+9X8b2UUmqRL52VHPAgfffvZFWYnlCLiynmB5I9GBbmpRkr4ps/J3Be1o2fEiTWCdYd2gy1DLNPywn+wyICj4SUfXmIKCV4wHCbMwNrZotXjqnGL+fKXvTnKG0Qf98CSlcuj+EV5M7gUDeoGEnpnmILr/nEM8qxW0lXY7jovUZj931yiaaz3l/hV/rBhasO8Ry+96wSEPgTzPjza3exiZu8wePQHUpi9qiValiJT/MoqHzIPOnhAIIbke6D+HHGEVlietJZJS4SSEJnstNG+QPBJ7w+OH9IROV5e3/8I5INZc3URJIucjXGb42Umcni6VSVJIpZeMBBk+zcHAD8Nzkdn7WwHx+V7jL1CdVMNaaDylZ+djSd/mmWhiPiRDuBr4DROAmrz9VpP84iUwrYazu3YRpFF9+8kdyBfMCllXNq+2l5jQL/KkTrC27nc0ByXQueoeYyIpr+FaojtxXtBaf7hBYvJk+nOJNtSTbHNyispKeocaC+P1PNahARuiP32AzxmIEJoc4wYSfR56Wp37B7tkRXQ=
+  file: com.cataclysmdda.andr.apk
+  on:
+    repo: OwnageIsMagic/Cataclysm-DDA
+    branch: AndroidBuild
+p:
+- openssl aes-256-cbc -K $encrypted_bef49239437d_key -iv $encrypted_bef49239437d_iv
+  -in my-release-key.keystore.enc -out my-release-key.keystore -d
+dd:
+  secure: RsHTgZv7btI5IbkVIfXCYEx0F5bJ4AdEs1ehttaDc7Tai2B58AqidUdXtGnbw8xdQ2+zhMaBdYp2NhXwi1IWe7W/CQuvHhFTdXGAWDtkM/kI2CVoF+T1n4q3lufLxnp3dbp4yL77nmRVPq0vpY7PkUA/zQ7l23EqGmhrvpM0i2z9xORTiLmLVZRpI94G8AMEIo9DUgrAsxlfsCkvG4KlbilCLp3HCzn1egRqyZLD7ilBEDKUWlTjevvWQO1oJnhDeJkToijkEx0OAk+ZWJmZnaguzlBwxPBEpwCGnBXh3d7whCtn+V6e5viMxXmbsQNHbiPrZuyrFXiMERj2yipNwzfz/3UzKsjS269ectAkWg+bmXjboMrQTUsrck6zMayC4RLLiCdIcrxSTZTZBE4LVtt1JmhkUjk47CX3A6Nx0QOk/e36Q3OLh7E+DMyBDUikQY47rljC/Xlcyg+AcMAd9I0ORmGT0eMLLGgpV2fPNND7bJ+I8whR3yfuaWE1Kh3Hrker8F5sXIkgVc26Ym/+IUU6iXGUSZYOffgp8E6GvhKnCQn6f6qvo+P0JPOtEaUU1SSH3UCJgUwFuD1hA6Y3BbuZiXYsgu6Swk2PdDv81mAFsXayCf8lyPU2XhZ4td64Z/uWArhKkxH8oDenSQI2F4oKXh2JYQAPKZMfEszowFA=
