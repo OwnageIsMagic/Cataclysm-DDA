@@ -1,5 +1,6 @@
 #!/bin/sh
-set -ev
+#set -ev
+#set -v
 
 #	Move to jni
 #mv ../Cataclysm-DDA/ ../jni
