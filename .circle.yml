@@ -7,17 +7,17 @@ machine:
   # Add some environment variables
   environment:
     CIRCLE_ENV: test
-    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+#    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
 
 ## Customize checkout
-checkout:
-  post:
-    - git submodule sync
-    - git submodule update --init # use submodules
+#checkout:
+#  post:
+#    - git submodule sync
+#    - git submodule update --init # use submodules
 
 ## Customize dependencies
 dependencies:
-  #override:
+#   #override:
   #  - npm install coffeescript # install from a different package manager
   #  - gem uninstall bundler # use a custom version of bundler
   #  - gem install bundler --pre
@@ -47,14 +47,14 @@ general:
     #- "~/simplecov" # relative to the user's home directory
 
 ## Customize deployment commands
-deployment:
-  staging:
-    branch: master
-    heroku:
-      appname: foo-bar-123
+#deployment:
+#  staging:
+#    branch: master
+#    heroku:
+#      appname: foo-bar-123
 
 ## Custom notifications
-notify:
-  webhooks:
-    # A list of hashes representing hooks. Only the url field is supported.
-    - url: https://someurl.com/hooks/circle
+#notify:
+#  webhooks:
+#    # A list of hashes representing hooks. Only the url field is supported.
+#    - url: https://someurl.com/hooks/circle
