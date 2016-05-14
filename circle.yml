@@ -13,7 +13,7 @@ dependencies:
     - ./sysDeps.sh: # note ':' here
         timeout: 300 # fail if command has no output for 5 minutes
     - ./buildAPK.sh:
-        timeout: 60
+        timeout: 180
 
   # we automatically cache and restore many dependencies between
   # builds. If you need to, you can add custom paths to cache:
@@ -28,7 +28,7 @@ database:
 test:
   override:
     - file jni/assets/executable
-    - file jni/jni/com.cataclysmdda.andr.apk
+    - file jni/com.cataclysmdda.andr.apk
 
 general:
   artifacts:

@@ -14,11 +14,13 @@ fi
 #	Decrypt keys
 #openssl aes-256-cbc -K $encrypted_bef49239437d_key -iv $encrypted_bef49239437d_iv -in my-release-key.keystore.enc -out my-release-key.keystore -d
 #gpg -o keystore.gpg --symmetric --cipher-algo AES256 --passphrase-file ~/nkey.b64 my-release-key.keystore
+if [[ ! -e my-release-key.keystore ]]; then
 echo $MYKEY | gpg -o my-release-key.keystore --passphrase-fd 0 keystore.gpg
+fi
 
 #	Build
 make version
-~/android-ndk-root/ndk-build -j6
+~/android-ndk-root/ndk-build -j8
 cp com.cataclysmdda.andr-1-TEMPLATE.apk com.cataclysmdda.andr.apk
 
 #	Move to APK
