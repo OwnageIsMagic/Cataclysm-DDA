@@ -12,6 +12,8 @@ fi
 
 #	Decrypt keys
 #openssl aes-256-cbc -K $encrypted_bef49239437d_key -iv $encrypted_bef49239437d_iv -in my-release-key.keystore.enc -out my-release-key.keystore -d
+#gpg -o keystore.gpg --symmetric --cipher-algo AES256 --passphrase-file ~/nkey.b64 my-release-key.keystore
+echo $MYKEY |gpg -o my-release-key.keystore --passphrase-fd 0 keystore.gpg
 
 #	Build
 make version
@@ -27,7 +29,7 @@ zip -u com.cataclysmdda.andr.apk assets/resources.zip assets/executable
 
 #	Signing
 #keytool -genkey -v -keystore my-release-key.keystore -alias key -keyalg RSA -keysize 2048 -validity 10000
-#jarsigner -storepass $PAS -digestalg SHA1 -sigalg SHA1withRSA -keystore my-release-key.keystore com.cataclysmdda.andr.apk key
+jarsigner -storepass $PAS -digestalg SHA1 -sigalg SHA1withRSA -keystore my-release-key.keystore com.cataclysmdda.andr.apk key
 
 #	Zipalign
 #zipalign -v 4 com.cataclysmdda.andr.apk com.cataclysmdda.andr-ALIGNED.apk

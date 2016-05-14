@@ -27,8 +27,8 @@ database:
 ## Customize test commands
 test:
   override:
-    - file jni/assets/cataclysm
-    - file jni/*.apk
+    - file jni/assets/executable
+    - file jni/jni/com.cataclysmdda.andr.apk
 
 general:
   artifacts:
