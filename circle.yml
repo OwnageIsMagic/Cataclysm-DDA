@@ -9,7 +9,7 @@ dependencies:
 #    - sudo apt-get update;
     - sudo apt-get install file
 
-  override:
+  post:
     - ./sysDeps.sh: # note ':' here
         timeout: 300 # fail if command has no output for 5 minutes
     - ./buildAPK.sh:
