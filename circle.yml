@@ -5,9 +5,9 @@ machine:
 
 ## Customize dependencies
 dependencies:
-  pre:
+#  pre:
 #    - sudo apt-get update;
-    - sudo apt-get install file
+#    - sudo apt-get install file
 
   post:
     - ./sysDeps.sh: # note ':' here

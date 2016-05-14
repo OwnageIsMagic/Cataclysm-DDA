@@ -1,5 +1,6 @@
 #!/bin/bash
-set -ev
+#set -ev
+set -e
 
 #	apt-get
 #sudo apt-get update 1>/dev/null 2>&1

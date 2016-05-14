@@ -1,6 +1,7 @@
 #!/bin/bash
+set -e
 #set -ev
-set -v
+#set -v
 
 #	Move to jni
 #mv ../Cataclysm-DDA/ ../jni
@@ -13,7 +14,7 @@ fi
 #	Decrypt keys
 #openssl aes-256-cbc -K $encrypted_bef49239437d_key -iv $encrypted_bef49239437d_iv -in my-release-key.keystore.enc -out my-release-key.keystore -d
 #gpg -o keystore.gpg --symmetric --cipher-algo AES256 --passphrase-file ~/nkey.b64 my-release-key.keystore
-echo $MYKEY |gpg -o my-release-key.keystore --passphrase-fd 0 keystore.gpg
+echo $MYKEY | gpg -o my-release-key.keystore --passphrase-fd 0 keystore.gpg
 
 #	Build
 make version
