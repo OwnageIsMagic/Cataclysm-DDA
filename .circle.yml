@@ -7,7 +7,7 @@ machine:
   # Add some environment variables
   environment:
     CIRCLE_ENV: test
-#    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+    #DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
 
 ## Customize checkout
 #checkout:
@@ -17,13 +17,9 @@ machine:
 
 ## Customize dependencies
 dependencies:
-#   #override:
-  #  - npm install coffeescript # install from a different package manager
-  #  - gem uninstall bundler # use a custom version of bundler
-  #  - gem install bundler --pre
-
   override:
-    - make version: # note ':' here
+    - make version
+    - sysDeps.sh: # note ':' here
         timeout: 180 # fail if command has no output for 3 minutes
 
   # we automatically cache and restore many dependencies between
