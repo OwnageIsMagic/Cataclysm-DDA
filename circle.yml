@@ -3,24 +3,11 @@ machine:
   java:
     version: openjdk7
 
-  # Add some environment variables
-  #environment:
-    #CIRCLE_ENV: test
-    #DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
-
-## Customize checkout
-#checkout:
-#  override:
-#    - mv ../Cataclysm-DDA/ ../jni
-#  post:
-#    - git submodule sync
-#    - git submodule update --init # use submodules
-
 ## Customize dependencies
 dependencies:
-  #pre:
-    #- sudo apt-get update;
-    #- sudo apt-get install zipalign
+  pre:
+#    - sudo apt-get update;
+    - sudo apt-get install file
 
   override:
     - ./sysDeps.sh: # note ':' here
@@ -47,6 +34,14 @@ general:
   artifacts:
     - "jni/com.cataclysmdda.andr.apk" # relative to the build directory
     #- "~/simplecov" # relative to the user's home directory
+
+## Customize checkout
+#checkout:
+#  override:
+#    - mv ../Cataclysm-DDA/ ../jni
+#  post:
+#    - git submodule sync
+#    - git submodule update --init # use submodules
 
 ## Customize deployment commands
 #deployment:
