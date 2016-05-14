@@ -4,9 +4,11 @@
 
 #	Move to jni
 #mv ../Cataclysm-DDA/ ../jni
-mkdir jni
-cd jni
-mv ../*[^.jni.] ../.*[^.] .
+if [[  $CI = "true" ]]; then 
+mkdir jni &&
+cd jni &&
+mv ../*[^.jni.] ../.*[^.] . ;
+fi
 
 #	Decrypt keys
 #openssl aes-256-cbc -K $encrypted_bef49239437d_key -iv $encrypted_bef49239437d_iv -in my-release-key.keystore.enc -out my-release-key.keystore -d
