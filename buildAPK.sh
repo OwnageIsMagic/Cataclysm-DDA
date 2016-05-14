@@ -1,10 +1,21 @@
 #!/bin/sh
 set -ev
 
+#	Move to jni
+#mv ../Cataclysm-DDA/ ../jni
+mkdir jni
+cd jni
+mv ../*[^.jni.] ../.*[^.] .
+
+#	Get Android NDK
+if [[ ! -e ~/android-ndk-root/ndk-build ]]; then wget dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip -O ~/ndk.zip && unzip ~/ndk.zip && mv ~/android-ndk-r11c ~/android-ndk-root; fi
+
+#	Decrypt keys
+#openssl aes-256-cbc -K $encrypted_bef49239437d_key -iv $encrypted_bef49239437d_iv -in my-release-key.keystore.enc -out my-release-key.keystore -d
+
 #	Build
-openssl aes-256-cbc -K $encrypted_bef49239437d_key -iv $encrypted_bef49239437d_iv -in my-release-key.keystore.enc -out my-release-key.keystore -d
-make version 
-./android-ndk-root/ndk-build -j6
+make version
+~/android-ndk-root/ndk-build -j6
 cp com.cataclysmdda.andr-1-TEMPLATE.apk com.cataclysmdda.andr.apk
 
 #	Move to APK
@@ -16,7 +27,7 @@ zip -u com.cataclysmdda.andr.apk assets/resources.zip assets/executable
 
 #	Signing
 #keytool -genkey -v -keystore my-release-key.keystore -alias key -keyalg RSA -keysize 2048 -validity 10000
-jarsigner -storepass $PAS -digestalg SHA1 -sigalg SHA1withRSA -keystore my-release-key.keystore com.cataclysmdda.andr.apk key
+#jarsigner -storepass $PAS -digestalg SHA1 -sigalg SHA1withRSA -keystore my-release-key.keystore com.cataclysmdda.andr.apk key
 
 #	Zipalign
-#zipalign -v 4 com.cataclysmdda.andr.apk com.cataclysmdda.andr-ALIGNED.apk
+zipalign -v 4 com.cataclysmdda.andr.apk com.cataclysmdda.andr-ALIGNED.apk

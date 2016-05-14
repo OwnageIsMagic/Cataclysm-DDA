@@ -9,17 +9,20 @@ machine:
     #DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
 
 ## Customize checkout
-checkout:
-  override:
-    - mv ../Cataclysm-DDA/ ../jni
+#checkout:
+#  override:
+#    - mv ../Cataclysm-DDA/ ../jni
 #  post:
 #    - git submodule sync
 #    - git submodule update --init # use submodules
 
 ## Customize dependencies
 dependencies:
+  #pre:
+    #- sudo apt-get update;
+    #- sudo apt-get install zipalign
+
   override:
-    - make version
     - ./sysDeps.sh: # note ':' here
         timeout: 300 # fail if command has no output for 5 minutes
     - ./buildAPK.sh:
@@ -28,7 +31,7 @@ dependencies:
   # we automatically cache and restore many dependencies between
   # builds. If you need to, you can add custom paths to cache:
   cache_directories:
-    - "android-ndk-root"   # relative to the build directory
+    - "~/android-ndk-root"
 
 database:
   override:
@@ -37,12 +40,12 @@ database:
 ## Customize test commands
 test:
   override:
-    - file assets/cataclysm
-    - file *.apk
+    - file jni/assets/cataclysm
+    - file jni/*.apk
 
 general:
   artifacts:
-    - "com.cataclysmdda.andr.apk" # relative to the build directory
+    - "jni/com.cataclysmdda.andr.apk" # relative to the build directory
     #- "~/simplecov" # relative to the user's home directory
 
 ## Customize deployment commands
