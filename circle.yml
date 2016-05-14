@@ -9,7 +9,9 @@ machine:
     #DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
 
 ## Customize checkout
-#checkout:
+checkout:
+override:
+    - git clone https://github.com/OwnageIsMagic/Cataclysm-DDA.git jni
 #  post:
 #    - git submodule sync
 #    - git submodule update --init # use submodules
@@ -18,9 +20,9 @@ machine:
 dependencies:
   override:
     - make version
-    - sysDeps.sh: # note ':' here
+    - ./sysDeps.sh: # note ':' here
         timeout: 300 # fail if command has no output for 5 minutes
-    - buildAPK.sh:
+    - ./buildAPK.sh:
         timeout: 60
 
   # we automatically cache and restore many dependencies between
