@@ -12,9 +12,13 @@ include $(PREBUILT_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_MODULE := cataclysm
 LOCAL_SRC_FILES := $(wildcard src/*.cpp)
-LOCAL_CPPFLAGS := -Wl,--dynamic-linker=/system/bin/linker -std=c++11 -DRELEASE -Wall -ffast-math -MMD -Ofast -fPIE -pie --static -DANDROID -DCATA_NO_CPP11_STRING_CONVERSIONS
+#LOCAL_CPPFLAGS := -Wl,--dynamic-linker=/system/bin/linker -std=c++11 -DRELEASE -Wall -ffast-math -MMD -Ofast -fPIE -pie --static -DANDROID -DCATA_NO_CPP11_STRING_CONVERSIONS
+DEFINES += -DRELEASE -DGIT_VERSION 
+LOCAL_CPPFLAGS := -Wl,--dynamic-linker=/system/bin/linker -std=c++11 -fPIC -fPIE -pie -Ofast -flto=jobserver -fuse-ld=gold -fomit-frame-pointer -MMD $(DEFINES) 
+#-Werror --static 
 #-march=armv7-a -mfloat-abi=softfp
-LOCAL_LDFLAGS := -fPIE -pie --static -Wl,--dynamic-linker=/system/bin/linker
+#LOCAL_LDFLAGS := --static -fPIE -pie -Wl,--dynamic-linker=/system/bin/linker
+LOCAL_LDFLAGS += $(LOCAL_CPPFLAGS)
 LOCAL_CPP_FEATURES := rtti exceptions
 #-D_GLIBCXX_USE_INT128  -stdlib=libstdc++
 #TARGET_ABI := android-22-arm64-v8a
