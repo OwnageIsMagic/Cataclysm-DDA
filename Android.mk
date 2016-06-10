@@ -12,8 +12,10 @@ include $(PREBUILT_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_MODULE := cataclysm
 LOCAL_SRC_FILES := $(wildcard src/*.cpp)
-#LOCAL_CPPFLAGS := -Wl,--dynamic-linker=/system/bin/linker -std=c++11 -DRELEASE -Wall -ffast-math -MMD -Ofast -fPIE -pie --static -DANDROID -DCATA_NO_CPP11_STRING_CONVERSIONS
-DEFINES += -DRELEASE -DGIT_VERSION 
+DEFINES += -DRELEASE #-DGIT_VERSION -DANDROID -DCATA_NO_CPP11_STRING_CONVERSIONS
+	#GCC
+#LOCAL_CPPFLAGS := -Wl,--dynamic-linker=/system/bin/linker -std=c++11 -DRELEASE -Wall -ffast-math -MMD -Ofast -fPIE -pie --static $(DEFINES) 
+	#Clang
 LOCAL_CPPFLAGS := -Wl,--dynamic-linker=/system/bin/linker -std=c++11 -fPIC -fPIE -pie -Ofast -flto=jobserver -fuse-ld=gold -fomit-frame-pointer -MMD $(DEFINES) 
 #-Werror --static 
 #-march=armv7-a -mfloat-abi=softfp
